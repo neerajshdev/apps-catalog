@@ -380,7 +380,7 @@ export default function PublisherAppForm({
                     borderRadius: '14px',
                     objectFit: 'cover',
                     border: '1px solid var(--border-subtle)',
-                    background: '#1e293b'
+                    background: '#f1f5f9'
                   }}
                 />
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 }}>

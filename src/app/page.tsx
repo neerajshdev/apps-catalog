@@ -4,7 +4,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import ParticleBackground from '@/components/ParticleBackground';
 import Navbar from '@/components/Navbar';
-import HeroSection from '@/components/HeroSection';
 import CategoryFilter, { SortOption } from '@/components/CategoryFilter';
 import AppCard from '@/components/AppCard';
 import { useToast } from '@/components/Toast';
@@ -12,7 +11,7 @@ import { AppItem, Category, Platform } from '@/types/app';
 import { INITIAL_APPS } from '@/data/initialApps';
 import { getLocalApps, saveLocalApps } from '@/lib/storage';
 import { triggerArchiveDownload } from '@/lib/download';
-import { IconBox, IconSearch } from '@/components/Icons';
+import { IconBox, IconSearch, IconSparkles, IconClose } from '@/components/Icons';
 import styles from './page.module.css';
 import layoutStyles from '@/components/SharedLayout.module.css';
 import buttonStyles from '@/components/Button.module.css';
@@ -62,12 +61,11 @@ export default function HomePage() {
         }
       })
       .catch((err) => {
-        // Fallback gracefully to local apps
         console.warn('API sync fallback:', err);
       });
   }, []);
 
-  // Keyboard shortcut for closing modals or clearing search
+  // Keyboard shortcut for clearing search
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -79,11 +77,6 @@ export default function HomePage() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [searchQuery]);
-
-  // Featured app for the Spotlight Hero
-  const featuredApp = useMemo(() => {
-    return apps.find((a) => a.isFeatured) || apps[0];
-  }, [apps]);
 
   // Filtered & Sorted Apps
   const filteredApps = useMemo(() => {
@@ -151,7 +144,7 @@ export default function HomePage() {
               ...item,
               stats: {
                 ...item.stats,
-                downloads: item.stats.downloads + 1
+                downloads: (item.stats?.downloads || 0) + 1
               }
             }
           : item
@@ -160,24 +153,7 @@ export default function HomePage() {
       return updated;
     });
 
-    showToast({
-      type: 'success',
-      title: `Downloading ${app.name}`,
-      message: `Archive: ${app.archiveFileName || `${app.name}.zip`} (${app.fileSize})`
-    });
-  };
-
-  // Handle App Share Action
-  const handleShareApp = (app: AppItem) => {
-    const url = typeof window !== 'undefined' ? window.location.href : '';
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(url);
-      showToast({
-        type: 'info',
-        title: 'Link Copied',
-        message: `Share link for ${app.name} copied to clipboard!`
-      });
-    }
+    showToast(`Downloading ${app.name} (${app.fileSize})`, 'success');
   };
 
   return (
@@ -185,24 +161,72 @@ export default function HomePage() {
       {/* Particle Canvas Background */}
       <ParticleBackground />
 
-      {/* Navigation Bar for Consumer */}
+      {/* Slim Modern Top Navbar */}
       <Navbar
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
         totalApps={apps.length}
         totalDownloads={totalDownloads}
       />
 
-      {/* Main App Container */}
-      <main className={layoutStyles.mainContent}>
-        {/* Spotlight Hero Banner (only show when not actively searching) */}
-        {!searchQuery && featuredApp && (
-          <HeroSection
-            featuredApp={featuredApp}
-            onSelectApp={(app) => router.push(`/app/${app.id}`)}
-            onDownload={handleDownloadApp}
-          />
-        )}
+      {/* Main Container */}
+      <main className={layoutStyles.mainContent} style={{ maxWidth: '1360px', paddingTop: '10px' }}>
+        
+        {/* Centered Hero Search & Discovery Section */}
+        <section className={styles["hero-search-section"]}>
+          <div className={styles["hero-search-badge-pill"]}>
+            <IconSparkles size={14} />
+            <span>Open & Verified App Ecosystem</span>
+          </div>
+
+          <h1 className={styles["hero-headline"]}>
+            Find & Download Great Software
+          </h1>
+          <p className={styles["hero-subtitle"]}>
+            Explore standalone desktop utilities, developer tools, and creative applications with direct zero-latency release archives.
+          </p>
+
+          {/* Centered Search Bar */}
+          <div className={styles["hero-search-bar-wrapper"]}>
+            <div className={styles["hero-search-icon"]}>
+              <IconSearch size={20} />
+            </div>
+
+            <input
+              type="text"
+              placeholder="Search apps by name, description, tags, or developer..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={styles["hero-search-input"]}
+            />
+
+            {searchQuery ? (
+              <button
+                onClick={() => setSearchQuery('')}
+                className={styles["hero-search-clear-btn"]}
+                title="Clear search query"
+              >
+                <IconClose size={16} />
+              </button>
+            ) : (
+              <span className={styles["hero-search-shortcut-hint"]}>
+                ESC
+              </span>
+            )}
+          </div>
+
+          {/* Popular Search Suggestion Tags */}
+          <div className={styles["hero-tags-row"]}>
+            <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600 }}>Popular:</span>
+            {['SoundWave', 'CogniFlow', 'DevPulse', 'Quantum', 'Aether'].map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSearchQuery(tag)}
+                className={styles["hero-tag-pill"]}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        </section>
 
         {/* Categories & Filter Bar */}
         <CategoryFilter
@@ -228,25 +252,25 @@ export default function HomePage() {
             ))}
           </div>
         ) : (
-          /* Empty State for Consumer */
+          /* Enhanced Interactive Empty State */
           <div
             style={{
-              padding: '60px 20px',
+              padding: '60px 24px',
               textAlign: 'center',
-              background: 'var(--bg-card)',
+              background: 'var(--bg-surface)',
               borderRadius: 'var(--radius-xl)',
               border: '1px solid var(--border-card)',
-              backdropFilter: 'blur(16px)',
-              maxWidth: '560px',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.04)',
+              maxWidth: '580px',
               margin: '40px auto'
             }}
           >
             <div
               style={{
-                width: '56px',
-                height: '56px',
+                width: '60px',
+                height: '60px',
                 borderRadius: '50%',
-                background: 'rgba(99, 102, 241, 0.1)',
+                background: 'rgba(249, 115, 22, 0.12)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -254,15 +278,32 @@ export default function HomePage() {
                 color: 'var(--accent-primary)'
               }}
             >
-              <IconSearch size={26} />
+              <IconSearch size={28} />
             </div>
 
-            <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>
-              No applications match your criteria
+            <h3 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
+              No applications match your filter
             </h3>
-            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
-              Try adjusting your search query or selecting a different category or platform filter.
+            <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: 1.6 }}>
+              We couldn&apos;t find anything matching &quot;{searchQuery || activeCategory}&quot;. Try exploring other popular categories below:
             </p>
+
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '24px' }}>
+              {(['Developer Tools', 'AI & Machine Learning', 'Productivity', 'Games'] as Category[]).map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    setSearchQuery('');
+                    setActiveCategory(cat);
+                    setSelectedPlatform('all');
+                  }}
+                  className={styles["quick-cat-btn"]}
+                >
+                  <IconSparkles size={12} />
+                  <span>{cat}</span>
+                </button>
+              ))}
+            </div>
 
             <button
               className={buttonStyles.btnSecondary}
@@ -271,6 +312,7 @@ export default function HomePage() {
                 setActiveCategory('All');
                 setSelectedPlatform('all');
               }}
+              style={{ padding: '10px 24px' }}
             >
               Reset All Filters
             </button>
@@ -281,18 +323,26 @@ export default function HomePage() {
       {/* Footer */}
       <footer className={styles["footer-container"]}>
         <div className={styles["footer-inner"]}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <IconBox size={16} color="var(--accent-cyan)" />
-            <span>
-              <strong>VAULT.DIST</strong> — Next-Gen Software Distribution Platform
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--accent-gradient)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+              <IconBox size={16} />
+            </div>
+            <div>
+              <strong style={{ color: 'var(--text-primary)', fontSize: '13px' }}>VAULT.DIST</strong>
+              <span style={{ marginLeft: '6px', color: 'var(--text-muted)' }}>— Next-Gen App Distribution</span>
+            </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <span>Zero-latency Web Showcase</span>
-            <span>•</span>
-            <a href="/publisher" style={{ color: 'var(--accent-purple)', fontWeight: 600 }}>
-              Developer / Publisher Portal ↗
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--accent-emerald)', fontSize: '12px', fontWeight: 600 }}>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-emerald)', display: 'inline-block', boxShadow: '0 0 8px rgba(5,150,105,0.6)' }} />
+              Operational
+            </span>
+
+            <span style={{ color: 'var(--border-subtle)' }}>|</span>
+
+            <a href="/publisher" style={{ color: 'var(--accent-primary)', fontWeight: 700, fontSize: '12px' }}>
+              Publisher Studio ↗
             </a>
           </div>
         </div>

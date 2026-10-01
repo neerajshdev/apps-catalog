@@ -264,7 +264,7 @@ export default function PublisherDashboard() {
                 <h1 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-primary)' }}>
                   Publisher Studio
                 </h1>
-                <span className={badgeStyles.badgeCategory} style={{ background: 'rgba(168, 85, 247, 0.15)', borderColor: 'rgba(168, 85, 247, 0.35)', color: '#c084fc' }}>
+                <span className={badgeStyles.badgeCategory} style={{ background: 'rgba(126, 34, 206, 0.1)', borderColor: 'rgba(126, 34, 206, 0.3)', color: '#7e22ce' }}>
                   Creator Hub
                 </span>
               </div>

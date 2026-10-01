@@ -1,26 +1,24 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
-import { IconBox, IconSearch, IconLock } from './Icons';
+import { IconBox, IconLock, IconSparkles } from './Icons';
 import styles from './Navbar.module.css';
+import buttonStyles from '@/components/Button.module.css';
 
 interface NavbarProps {
-  searchQuery: string;
-  onSearchChange: (query: string) => void;
-  totalApps: number;
-  totalDownloads: number;
+  totalApps?: number;
+  totalDownloads?: number;
 }
 
 export default function Navbar({
-  searchQuery,
-  onSearchChange,
-  totalApps,
-  totalDownloads
+  totalApps = 0,
+  totalDownloads = 0
 }: NavbarProps) {
   return (
     <header className={styles["navbar-container"]}>
       <div className={styles["navbar-inner"]}>
-        {/* Top / Left: Brand & Desktop Stats */}
+        {/* Left: Brand Logo & Metrics Badge */}
         <div className={styles["navbar-brand-section"]}>
           <Link href="/" className={styles["brand-logo"]}>
             <div className={styles["brand-icon-box"]}>
@@ -32,39 +30,25 @@ export default function Navbar({
             </div>
           </Link>
 
-          {/* Quick Stats Pill (Desktop) */}
-          <div className={styles["stats-badge-desktop"]}>
-            <span style={{ color: 'var(--accent-cyan)', fontWeight: 700 }}>{totalApps}</span> Apps
-            <span style={{ color: 'var(--border-subtle)' }}>•</span>
-            <span style={{ color: 'var(--accent-emerald)', fontWeight: 700 }}>
-              {(totalDownloads / 1000).toFixed(1)}k
-            </span> Downloads
-          </div>
+          {totalApps > 0 && (
+            <div className={styles["stats-badge-desktop"]}>
+              <span style={{ color: 'var(--accent-primary)', fontWeight: 700 }}>{totalApps}</span> Apps
+              <span style={{ color: 'var(--border-subtle)' }}>•</span>
+              <span style={{ color: 'var(--accent-emerald)', fontWeight: 700 }}>
+                {(totalDownloads / 1000).toFixed(1)}k
+              </span> Downloads
+            </div>
+          )}
         </div>
 
-        {/* Search Bar (Responsive full width on mobile) */}
-        <div className={styles["search-wrapper"]}>
-          <div className={styles["search-icon-inside"]}>
-            <IconSearch size={16} />
-          </div>
-          <input
-            type="text"
-            className={styles["search-input"]}
-            placeholder="Search apps, games, tools..."
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-          />
-          <span className={styles["search-shortcut"]}>ESC</span>
-        </div>
-
-        {/* Right Action: Publisher Portal Link */}
+        {/* Right: Actions */}
         <div className={styles["navbar-action-section"]}>
           <Link
             href="/publisher"
-            className={`\$\{buttonStyles.btnSecondary\} \$\{styles["nav-publisher-btn"]\}`}
+            className={`${buttonStyles.btnSecondary} ${styles["nav-publisher-btn"]}`}
             title="Publisher Management Studio"
           >
-            <IconLock size={13} color="var(--accent-purple)" />
+            <IconLock size={13} color="var(--accent-primary)" />
             <span>Publisher Portal</span>
           </Link>
         </div>

@@ -92,26 +92,26 @@ function AppDetailContent() {
       }
     } : null);
 
-    showToast(`Preparing download for ${app.name}...`, 'info');
+    showToast({ title: `Preparing download for ${app.name}...`, type: 'info' });
     triggerArchiveDownload(app);
 
     setTimeout(() => {
       setIsDownloading(false);
-      showToast(`Download started: ${app.archiveFileName || `${app.name}.zip`}`, 'success');
+      showToast({ title: `Download started: ${app.archiveFileName || `${app.name}.zip`}`, type: 'success' });
     }, 1200);
   };
 
   const handleShareApp = () => {
     if (typeof window !== 'undefined') {
       navigator.clipboard.writeText(window.location.href);
-      showToast('Link copied to clipboard!', 'success');
+      showToast({ title: 'Link copied to clipboard!', type: 'success' });
     }
   };
 
   const handleToggleWishlist = () => {
     setIsSaved((prev) => {
       const next = !prev;
-      showToast(next ? `Saved ${app?.name} to wishlist!` : `Removed ${app?.name} from wishlist`, 'info');
+      showToast({ title: next ? `Saved ${app?.name} to wishlist!` : `Removed ${app?.name} from wishlist`, type: 'info' });
       return next;
     });
   };

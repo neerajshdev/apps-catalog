@@ -153,7 +153,7 @@ export default function HomePage() {
       return updated;
     });
 
-    showToast(`Downloading ${app.name} (${app.fileSize})`, 'success');
+    showToast({ title: `Downloading ${app.name} (${app.fileSize})`, type: 'success' });
   };
 
   return (

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { getAllPosts } from '@/content/apps';
 import { SITE } from '@/content/site';
@@ -8,9 +9,16 @@ export function SiteHeader() {
     <header className={styles['site-header']}>
       <div className={styles['site-header-inner']}>
         <Link href="/" className={styles['brand']}>
-          <span className={styles['brand-mark']} aria-hidden="true">
-            {SITE.name.charAt(0)}
-          </span>
+          {/* Decorative: the adjacent text already names the site. */}
+          <Image
+            src="/brand/chiku-mark.svg"
+            alt=""
+            width={32}
+            height={32}
+            unoptimized
+            priority
+            className={styles['brand-mark']}
+          />
           <span>
             <span className={styles['brand-name']}>{SITE.name}</span>
             <span className={styles['brand-subtitle']}>apps &amp; experiments</span>

@@ -30,6 +30,8 @@ src/
 └─ types/post.ts
 
 public/apps/<slug>/            # cover + screenshot artwork
+public/brand/chiku-mark.svg    # the brand mark (vector source)
+assets/brand/                  # design sources, not deployed
 ```
 
 ## Adding an app
@@ -56,6 +58,26 @@ public/apps/<slug>/            # cover + screenshot artwork
 
 `generateStaticParams` and `generateMetadata` pick the new post up automatically —
 nothing else to wire.
+
+## Brand assets
+
+`public/brand/chiku-mark.svg` is the only brand artwork the site renders — it is
+the chiku fruit mark (whole fruit + halved fruit + leaf) drawn as vectors, with a
+transparent background so it sits on the header without a tile. `SiteHeader`
+renders it through `next/image` with `unoptimized` (SVG needs no optimizer), and
+the wordmark next to it is live text, which keeps it crisp, selectable and
+readable to crawlers.
+
+Browser and iOS icons still have to be bitmaps, so they are generated from that
+SVG rather than drawn by hand:
+
+```
+bun run brand:assets   # rewrites src/app/{favicon.ico,icon.png,apple-icon.png}
+```
+
+`assets/brand/chiku-logo.jpg` is the original artwork (fruit plus the "chiku"
+wordmark lockup) kept as a design source. It is outside `public/`, so it is never
+deployed.
 
 ## Reusable blocks (`@/components/post`)
 

@@ -1,44 +1,41 @@
+/* ==========================================================================
+   ChikuApps — design tokens + base styles
+
+   Only tokens that are actually referenced somewhere in `src/` live here.
+   Add new ones as needed rather than keeping a speculative palette.
+   ========================================================================== */
+
 :root {
+  /* Surfaces */
   --bg-body: #f8fafc;
   --bg-surface: #ffffff;
-  --bg-surface-elevated: #ffffff;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --bg-card-hover: rgba(255, 255, 255, 1);
-  --bg-glass: rgba(255, 255, 255, 0.6);
-  --bg-glass-modal: rgba(255, 255, 255, 0.95);
 
+  /* Borders */
   --border-subtle: rgba(0, 0, 0, 0.06);
   --border-card: rgba(0, 0, 0, 0.1);
   --border-hover: rgba(249, 115, 22, 0.4);
-  --border-focus: #f97316;
-  --border-glow: rgba(249, 115, 22, 0.2);
 
-  --accent-primary: #f97316;
-  --accent-purple: #8b5cf6;
-  --accent-cyan: #0ea5e9;
-  --accent-emerald: #059669;
-  --accent-amber: #d97706;
-  --accent-rose: #f43f5e;
-
-  --accent-gradient: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fcd34d 100%);
-  --accent-gradient-text: linear-gradient(135deg, #ea580c 0%, #d97706 100%);
-  --accent-gradient-glow: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(251, 146, 60, 0.1) 100%);
-
+  /* Text */
   --text-primary: #0f172a;
   --text-secondary: #475569;
-  --text-muted: #94a3b8;
   --text-highlight: #ea580c;
+  /* Darker accent: use this for small accent text that must pass 4.5:1. */
+  --text-highlight-strong: #9a3412;
 
-  --radius-sm: 8px;
+  /* Accent */
+  --accent-primary: #f97316;
+  --accent-emerald: #059669;
+  --accent-gradient: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fcd34d 100%);
+
+  /* Radius */
   --radius-md: 14px;
   --radius-lg: 20px;
-  --radius-xl: 28px;
   --radius-full: 9999px;
 
+  /* Elevation */
   --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 0 0 1px var(--border-card);
-  --shadow-card-hover: 0 20px 40px -15px rgba(249, 115, 22, 0.15), 0 0 20px rgba(249, 115, 22, 0.05), 0 0 0 1px var(--border-hover);
-  --shadow-glow-cyan: 0 0 30px rgba(14, 165, 233, 0.25);
-  --shadow-glow-purple: 0 0 35px rgba(139, 92, 246, 0.25);
+  --shadow-card-hover: 0 20px 40px -15px rgba(249, 115, 22, 0.15),
+    0 0 20px rgba(249, 115, 22, 0.05), 0 0 0 1px var(--border-hover);
 }
 
 * {
@@ -58,14 +55,31 @@ body {
   min-height: 100%;
   background-color: var(--bg-body);
   color: var(--text-primary);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+::selection {
+  background: rgba(249, 115, 22, 0.2);
+}
+
+/* Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -76,120 +90,30 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(15, 23, 42, 0.18);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.5);
+  background: var(--accent-primary);
 }
 
-/* Links & Buttons */
-a {
-  color: inherit;
-  text-decoration: none;
+/* Keyboard focus */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
 }
 
-button, input, textarea, select {
-  font-family: inherit;
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-
-
-
-
-
-
-/* Animations */
-
-
-@keyframes modalScale {
-  from { opacity: 0; transform: scale(0.96) translateY(12px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-@keyframes floatOrb {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(15px, -15px); }
-}
-
-/* ==========================================================================
-   NAVBAR (RESPONSIVE)
-   ========================================================================== */
-
-/* Search Box */
-
-/* ==========================================================================
-   HERO SPOTLIGHT SECTION (RESPONSIVE)
-   ========================================================================== */
-
-/* ==========================================================================
-   CATEGORY & PLATFORM FILTER BAR (HORIZONTAL SCROLL ON MOBILE)
-   ========================================================================== */
-
-/* ==========================================================================
-   APP GRID & APP CARD (RESPONSIVE)
-   ========================================================================== */
-
-/* ==========================================================================
-   MODAL SYSTEM & APP DETAIL (TOUCH / MOBILE RESPONSIVE)
-   ========================================================================== */
-
-/* Detail Hero Layout */
-
-/* Media Tabs Rail */
-
-/* Screenshot Viewer */
-
-/* Rich Description & Features */
-
-/* ==========================================================================
-   LIGHTBOX (RESPONSIVE FULLSCREEN)
-   ========================================================================== */
-
-/* ==========================================================================
-   TOAST NOTIFICATIONS (MOBILE RESPONSIVE)
-   ========================================================================== */
-
-
-/* ==========================================================================
-   FOOTER (RESPONSIVE)
-   ========================================================================== */
-
-/* ==========================================================================
-   PUBLISHER STUDIO & DASHBOARD STYLES
-   ========================================================================== */
-
-/* Gate / Login */
-
-/* ==========================================================================
-   MEDIA QUERIES FOR TABLET & MOBILE SCREEN COMPATIBILITY
-   ========================================================================== */
-
-/* Tablet & Mobile (<= 860px) */
-@media (max-width: 860px) {
-
-}
-
-/* Mobile Screens (<= 640px) */
-@media (max-width: 640px) {
-
-  /* Navbar Mobile Layout */
-
-  /* Hero Section Mobile */
-
-  /* Filter Bar Mobile */
-
-  /* App Grid Mobile */
-
-  /* Modal Mobile Bottom Sheet / Viewport */
-
-  /* Detail Hero on Mobile */
-
-  /* Lightbox Mobile Adjustments */
-
-
-
-  /* Publisher Studio Stats Grid */
-
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

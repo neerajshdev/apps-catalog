@@ -1,17 +1,18 @@
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import styles from './privacy.module.css';
+import { SiteFooter, SiteHeader } from '@/components/post/SiteChrome';
+import styles from '../privacy.module.css';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - FlappyGun | VAULT.DIST',
+  title: 'Privacy Policy - FlappyGun',
   description: 'Privacy Policy for the FlappyGun mobile game.',
+  alternates: { canonical: '/privacy/flappygun' },
 };
 
 export default function FlappyGunPrivacyPolicy() {
   return (
     <div className={styles.container}>
-      <Navbar />
+      <SiteHeader />
       <main className={styles.main}>
         <div className={styles.content}>
           <h1 className={styles.title}>Privacy Policy for FlappyGun</h1>
@@ -39,7 +40,7 @@ export default function FlappyGunPrivacyPolicy() {
             <h2>3. How We Use Your Information</h2>
             <p>The collected information is used for the following purposes:</p>
             <ul>
-              <li>To provide and maintain the game's core functionality, including the global leaderboard system via Google Play Games Services.</li>
+              <li>To provide and maintain the game&apos;s core functionality, including the global leaderboard system via Google Play Games Services.</li>
               <li>To serve personalized and non-personalized advertisements via the Appodeal Ad Network and its partners.</li>
               <li>To monitor app performance, debug crashes, and analyze user interactions to improve the gameplay experience.</li>
             </ul>
@@ -61,7 +62,7 @@ export default function FlappyGunPrivacyPolicy() {
           </section>
 
           <section className={styles.section}>
-            <h2>5. Children's Privacy (COPPA)</h2>
+            <h2>5. Children&apos;s Privacy (COPPA)</h2>
             <p>
               These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13 years of age. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to do necessary actions.
             </p>
@@ -77,7 +78,7 @@ export default function FlappyGunPrivacyPolicy() {
           <section className={styles.section}>
             <h2>7. California Privacy Rights (CCPA)</h2>
             <p>
-              If you are a California resident, the California Consumer Privacy Act (CCPA) grants you specific rights regarding your personal information. You have the right to request that we disclose certain information to you about our collection and use of your personal information over the past 12 months. You also have the right to request the deletion of your personal information. Under CCPA, targeted advertising may be considered a "sale" of personal data. You have the right to opt-out of ad tracking via your device's privacy settings.
+              If you are a California resident, the California Consumer Privacy Act (CCPA) grants you specific rights regarding your personal information. You have the right to request that we disclose certain information to you about our collection and use of your personal information over the past 12 months. You also have the right to request the deletion of your personal information. Under CCPA, targeted advertising may be considered a &quot;sale&quot; of personal data. You have the right to opt-out of ad tracking via your device&apos;s privacy settings.
             </p>
           </section>
 
@@ -104,6 +105,7 @@ export default function FlappyGunPrivacyPolicy() {
           </section>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

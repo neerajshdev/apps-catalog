@@ -1,0 +1,21 @@
+.features {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.feature-icon {
+  display: flex;
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--accent-emerald);
+}

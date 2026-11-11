@@ -1,0 +1,75 @@
+.strip {
+  margin: 44px 0;
+}
+
+.strip-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.strip-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+}
+
+.strip-hint {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.strip-track {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 0 -4px;
+  padding: 4px 4px 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  list-style: none;
+}
+
+.strip-track:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 4px;
+  border-radius: var(--radius-md);
+}
+
+.strip-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.strip-figure {
+  margin: 0;
+}
+
+/*
+ * Each shot keeps its own aspect ratio: portrait phone screenshots are capped
+ * by height, wide ones by width, and nothing is scaled up past its intrinsic
+ * size, so low-resolution source art stays sharp.
+ */
+.strip-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(78vw, 460px);
+  max-height: min(62vh, 500px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+}
+
+.strip-caption {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}

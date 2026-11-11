@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="FlappyGun cover placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="55%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1340" cy="120" r="300" fill="#ffffff" opacity="0.10"/>
+  <circle cx="180" cy="820" r="220" fill="#0f172a" opacity="0.12"/>
+  <rect x="1150" y="470" width="140" height="140" rx="30" fill="#ffffff" opacity="0.20"/>
+  <circle cx="1220" cy="540" r="30" fill="#ffffff" opacity="0.55"/>
+  <text x="110" y="430" font-family="Helvetica, Arial, sans-serif" font-size="112" font-weight="700" fill="#ffffff">FlappyGun</text>
+  <text x="114" y="500" font-family="Helvetica, Arial, sans-serif" font-size="34" fill="#ffffff" opacity="0.82">Cover image placeholder — replace with your own art</text>
+</svg>

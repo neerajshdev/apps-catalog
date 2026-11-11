@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Leaderboard screenshot placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffedd5"/>
+      <stop offset="100%" stop-color="#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="70" y="60" width="1140" height="600" rx="28" fill="#ffffff" opacity="0.5" stroke="#f97316" stroke-width="3" stroke-dasharray="12 12"/>
+  <text x="640" y="345" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#c2410c">Screenshot 2</text>
+  <text x="640" y="400" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9a3412">placeholder — leaderboard or menu shot</text>
+</svg>

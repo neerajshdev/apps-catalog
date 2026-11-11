@@ -1,17 +1,18 @@
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import styles from './privacy.module.css';
+import { SiteFooter, SiteHeader } from '@/components/post/SiteChrome';
+import styles from '../privacy.module.css';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - Flap the Bird',
   description: 'Privacy Policy for the Flap the Bird mobile game.',
+  alternates: { canonical: '/privacy/flap-the-bird' },
 };
 
 export default function FlapTheBirdPrivacyPolicy() {
   return (
     <div className={styles.container}>
-      <Navbar />
+      <SiteHeader />
       <main className={styles.main}>
         <div className={styles.content}>
           <h1 className={styles.title}>Privacy Policy for Flap the Bird</h1>
@@ -39,7 +40,7 @@ export default function FlapTheBirdPrivacyPolicy() {
             <h2>3. How We Use Your Information</h2>
             <p>The collected information is used for the following purposes:</p>
             <ul>
-              <li>To provide and maintain the game's core functionality, including the leaderboard system via Google Play Games Services.</li>
+              <li>To provide and maintain the game&apos;s core functionality, including the leaderboard system via Google Play Games Services.</li>
               <li>To serve personalized and non-personalized advertisements via the Appodeal Ad Network and its partners.</li>
               <li>To monitor app performance, debug crashes, and analyze user interactions using Firebase Analytics and Crashlytics.</li>
             </ul>
@@ -85,6 +86,7 @@ export default function FlapTheBirdPrivacyPolicy() {
           </section>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

@@ -1,0 +1,73 @@
+.post-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--text-highlight);
+}
+
+.post-title {
+  font-size: clamp(32px, 4.4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.post-tagline {
+  max-width: 680px;
+  font-size: 17px;
+  line-height: 1.65;
+  /* Avoids a single word stranded on the last line. */
+  text-wrap: pretty;
+  color: var(--text-secondary);
+}
+
+.post-tags {
+  margin-top: 2px;
+}
+
+.post-cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin-top: 8px;
+  overflow: hidden;
+  background: #e2e8f0;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+}
+
+.post-cover-image {
+  object-fit: cover;
+}
+
+.post-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 6px;
+}
+
+@media (max-width: 640px) {
+  .post-title {
+    letter-spacing: -0.8px;
+  }
+
+  .post-tagline {
+    font-size: 15px;
+  }
+}

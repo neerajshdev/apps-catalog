@@ -1,0 +1,109 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-body);
+  color: var(--text-primary);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 48px 24px 72px;
+}
+
+.content {
+  width: 100%;
+  max-width: 760px;
+  padding: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+.lastUpdated {
+  margin-bottom: 40px;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.section {
+  margin-bottom: 36px;
+}
+
+.section h2 {
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.section p {
+  margin-bottom: 14px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.section ul {
+  padding-left: 22px;
+  list-style-type: disc;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.section li {
+  margin-bottom: 8px;
+  line-height: 1.65;
+}
+
+.section a {
+  color: var(--text-highlight-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.section a:hover {
+  color: var(--text-highlight);
+}
+
+/* Small print: generator/attribution credits. */
+.note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.note a {
+  color: var(--text-highlight-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.note a:hover {
+  color: var(--text-highlight);
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 28px 16px 56px;
+  }
+
+  .content {
+    padding: 24px 20px;
+  }
+}

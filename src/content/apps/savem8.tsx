@@ -20,6 +20,8 @@ const meta: AppPostMeta = {
   cover: {
     src: '/apps/savem8/cover.png',
     alt: 'SaveM8 app icon beside the SaveM8 wordmark, the subtitle “Browser & Media Saver” and the line “Watch · Browse · Save”',
+    width: 1600,
+    height: 900,
   },
   platforms: ['android'],
   applicationCategory: 'UtilitiesApplication',

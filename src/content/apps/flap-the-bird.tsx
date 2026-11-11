@@ -77,11 +77,15 @@ function FlapTheBirdContent() {
             src: '/apps/flap-the-bird/screenshot-1.svg',
             alt: 'Flap the Bird gameplay screen',
             caption: 'Gameplay — placeholder image',
+            width: 1280,
+            height: 720,
           },
           {
             src: '/apps/flap-the-bird/screenshot-2.svg',
             alt: 'Flap the Bird menu screen',
             caption: 'Menu — placeholder image',
+            width: 1280,
+            height: 720,
           },
         ]}
       />

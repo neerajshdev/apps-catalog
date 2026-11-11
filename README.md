@@ -48,6 +48,11 @@ public/apps/<slug>/            # cover + screenshot artwork
    Covers render at 16:9; for screenshots pass the real `width`/`height` so the
    rail reserves space (portrait phone shots are supported and are capped by
    height rather than squeezed into a 16:9 box).
+   `next/image` handles responsive widths plus AVIF/WebP negotiation, so keep
+   one large source per image — ~1600×900 for a cover, ~940 px wide for phone
+   screenshots — and do not commit size variants. If you ever host this where
+   the optimizer is unavailable, set `images: { unoptimized: true }` in
+   `next.config.ts` and pre-size the files instead.
 
 `generateStaticParams` and `generateMetadata` pick the new post up automatically —
 nothing else to wire.
@@ -82,10 +87,16 @@ npx eslint src     # lint
 ## Notes
 
 - `savem8` is the first real post. Its icon and screenshots came from the Play
-  listing (screenshots re-encoded to WebP); `cover.png` was generated as a
-  1600×900 composition of the store icon.
+  listing (screenshots re-encoded to WebP at 940 px wide); `cover.png` is a
+  1600×900 palette PNG generated from the store icon, and doubles as the
+  OpenGraph image.
 - Privacy policies are hosted here, one folder per app: `/privacy/<slug>`. Use
   `https://chikuapps.com/privacy/<slug>` as the policy URL in the Play Console.
+- **Web Analytics** (`@vercel/analytics`) is mounted once in `src/app/layout.tsx`,
+  so every page reports page views, including client-side transitions. It only
+  collects data when the project is deployed on Vercel **and** Web Analytics is
+  enabled in the project dashboard; locally you will see a 404 for
+  `/_vercel/insights/script.js`, which is expected.
 - The two sample posts (`flappygun`, `flap-the-bird`) still use placeholder
   copy, SVG artwork and `com.example.*` store URLs, all marked `TODO`.
 - Brand name, domain and site copy live only in `src/content/site.ts`.

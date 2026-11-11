@@ -42,16 +42,22 @@ const screenshots = [
     src: '/apps/flappygun/screenshot-1.svg',
     alt: 'FlappyGun gameplay screen',
     caption: 'Gameplay — placeholder image',
+    width: 1280,
+    height: 720,
   },
   {
     src: '/apps/flappygun/screenshot-2.svg',
     alt: 'FlappyGun leaderboard screen',
     caption: 'Leaderboards — placeholder image',
+    width: 1280,
+    height: 720,
   },
   {
     src: '/apps/flappygun/screenshot-3.svg',
     alt: 'FlappyGun high score screen',
     caption: 'High score screen — placeholder image',
+    width: 1280,
+    height: 720,
   },
 ];
 

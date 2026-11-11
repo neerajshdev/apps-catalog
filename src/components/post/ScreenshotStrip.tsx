@@ -37,7 +37,7 @@ export default function ScreenshotStrip({
                 alt={image.alt}
                 width={image.width ?? DEFAULT_IMAGE_WIDTH}
                 height={image.height ?? DEFAULT_IMAGE_HEIGHT}
-                sizes="(max-width: 760px) 80vw, 460px"
+                sizes="(max-width: 760px) 78vw, 282px"
                 className={styles['strip-image']}
               />
               {image.caption ? (

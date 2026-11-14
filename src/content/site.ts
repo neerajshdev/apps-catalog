@@ -3,11 +3,10 @@
  * Change these once and every page follows.
  */
 export const SITE = {
-  name: 'ChikuApps',
-  url: 'https://chikuapps.com',
-  title: 'ChikuApps — apps for Android, desktop and the web',
-  tagline: 'Small, focused apps for Android, desktop and the web.',
+  name: "ChikuApps",
+  url: "https://chikuapps.com",
+  title: "ChikuApps — apps for Android, desktop and the web",
+  tagline: "Small, focused apps for Android, desktop and the web.",
   description:
-    'ChikuApps is where I publish the apps I build on my own: Android games, desktop tools and browser experiments — what each one does, where to get it, and how it was made.',
+    "ChikuApps is a collection of small, focused apps for Android, desktop and the web. Each app is designed to be simple, fast and easy to use.",
 };
-
